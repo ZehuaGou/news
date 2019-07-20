@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/admin/oneCategory.css}"/>
+  <title>用户列表</title>
+  <link>
+</head>
+<body>
+<nav class="container-fluid">
+
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div th:replace="admin/top :: top"></div>
+
+      <!--      菜单栏-->
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <ul class="nav nav-tabs">
+            <li>
+              <a th:href="@{/admin/oneCategory/list}">一级分类管理</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/article/1/list}">文章管理</a>
+            </li>
+            <li class="active">
+              <a th:href="@{/admin/user/1/list}">用户管理</a>
+            </li>
+            <li class="disabled">
+              <a>搜索结果</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>用户名</th>
+              <th>性别</th>
+              <th>生日</th>
+              <th>编辑</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="info" th:each="userinfo:${pageInfo.list}">
+              <td>
+                <a th:text="${userinfo.username}"
+                   th:href="@{/admin/user/{id}/detail(id=${userinfo.userId})}"></a>
+              </td>
+              <td th:text="${userinfo.sexEnum.message}"></td>
+              <td th:text="${#dates.format(userinfo.birthday, 'yyyy-MM-dd')}"></td>
+              <td>
+                <a th:href="@{/admin/user/delete/{id}(id=${userinfo.userId})}">
+                  <button class="btn btn-danger btn-default">删除</button>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--      分页-->
+      <div class="row clearfix">
+
+        <div class="col-md-8 column col-md-offset-4">
+          <span class="label label-info" th:text="'第'+${pageInfo.pageNum}+'/'+${pageInfo.pages}+'页'"></span>
+          <span class="label label-info" th:text="'总记录数：'+${pageInfo.total}"></span>
+          <span class="label label-info" th:text="'当前显示：'+${pageInfo.size}"></span>
+        </div>
+
+        <div class="col-md-8 column col-md-offset-4">
+          <ul class="pagination pagination-lg" th:if="${pageInfo.hasPreviousPage}">
+            <li>
+              <a th:href="@{/admin/user/{pageNum}/list(pageNum=${pageInfo.firstPage})}">首页</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/user/{pageNum}/list(pageNum=${pageInfo.prePage})}">上一页</a>
+            </li>
+          </ul>
+          <ul class="pagination pagination-lg" th:if="${pageInfo.hasNextPage}">
+            <li>
+              <a th:href="@{/admin/user/{pageNum}/list(pageNum=${pageInfo.nextPage})}">下一页</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/user/{pageNum}/list(pageNum=${pageInfo.lastPage})}">尾页</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+
+</html>

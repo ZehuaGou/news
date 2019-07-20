@@ -1,0 +1,183 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>新闻网</title>
+  <link th:href="@{/css/style.css}" type="text/css" rel="stylesheet"/>
+
+  <script type="text/javascript" th:src="@{/js/banner1.js}"></script>
+</head>
+<body>
+
+<div th:replace="user/header :: header"></div>
+<div class="content">
+
+  <div class="content_left">
+    <div class="left_top_you">
+      <div class="hyyw">
+        <h1><span>要闻</span></h1>
+        <div class="list">
+          <table style="margin-left: 10px">
+            <tr th:each="article:${pageInfo.list}">
+              <td>
+                <a style="font-size: 15px; overflow: hidden; white-space: nowrap; text-overflow: ellipsis;"
+                   th:href="@{/article/{articleId}/detail(articleId=${article.articleId})}">
+                  <span th:text="${article.title}"></span>
+                </a>
+              </td>
+              <td width="200px">
+                <p th:text="${article.author}"></p>
+              </td>
+              <td>
+                <p style="font-size: 12px;">浏览次数：
+                  <span th:text="${article.clickVolume}"></span>
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div><!--hyyw end-->
+
+      <!--一级分类分页-->
+      <table th:if="${oneCategory != null}" border="0" cellspacing="0" cellpadding="0" width="900px"
+             style="margin-left: -100px">
+        <tr>
+          <td align="right">
+            第<span th:text="${pageInfo.pageNum}"></span>/
+            <span th:text="${pageInfo.pages}"></span>页&nbsp;&nbsp;
+            总记录数：<span th:text="${pageInfo.total}"></span>&nbsp;&nbsp;
+            显示:<span th:text="${pageInfo.size}"></span>&nbsp;&nbsp;
+            <span>
+      <span th:if="${pageInfo.isHasPreviousPage()}">
+        <a th:href="@{/article/{oneCategory}/{pageNum}/list(oneCategory=${oneCategory}, pageNum=${pageInfo.firstPage})}">
+          [首页]
+        </a>&nbsp;&nbsp;
+        <a th:href="@{/article/{oneCategory}/{pageNum}/list(oneCategory=${oneCategory}, pageNum=${pageInfo.prePage})}">
+          [上一页]
+        </a>&nbsp;&nbsp;
+      </span>
+      <span th:if="${pageInfo.hasNextPage}">
+        <a th:href="@{/article/{oneCategory}/{pageNum}/list(oneCategory=${oneCategory}, pageNum=${pageInfo.nextPage})}">
+          [下一页]
+        </a>&nbsp;&nbsp;
+        <a th:href="@{/article/{oneCategory}/{pageNum}/list(oneCategory=${oneCategory}, pageNum=${pageInfo.pages})}">
+          [尾页]
+        </a>&nbsp;&nbsp;
+      </span>
+      </span>
+          </td>
+        </tr>
+      </table>
+      <!--      关键词查询分页-->
+      <table th:if="${keyWords != null}" border="0" cellspacing="0" cellpadding="0" width="900px"
+             style="margin-left: -100px">
+        <tr>
+          <td align="right">
+            第<span th:text="${pageInfo.pageNum}"></span>/
+            <span th:text="${pageInfo.pages}"></span>页&nbsp;&nbsp;
+            总记录数：<span th:text="${pageInfo.total}"></span>&nbsp;&nbsp;
+            每页显示:<span th:text="${pageInfo.size}"></span>&nbsp;&nbsp;
+            <span>
+      <span th:if="${pageInfo.isHasPreviousPage()}">
+        <a th:href="@{/article/search/{keyWords}/{pageNum}(keyWords=${keyWords}, pageNum=${pageInfo.firstPage})}">
+          <span 首页="$首页$"></span>
+        </a>&nbsp;&nbsp;
+        <a th:href="@{/article/search/{keyWords}/{pageNum}(keyWords=${keyWords}, pageNum=${pageInfo.prePage})}">
+          [上一页]
+        </a>&nbsp;&nbsp;
+      </span>
+      <span th:if="${pageInfo.hasNextPage}">
+        <a
+                th:href="@{/article/search/{keyWords}/{pageNum}(keyWords=${keyWords}, pageNum=${pageInfo.nextPage})}">
+          [下一页]
+        </a>&nbsp;&nbsp;
+        <a th:href="@{/article/search/{keyWords}/{pageNum}(keyWords=${keyWords}, pageNum=${pageInfo.pages})}">
+          [尾页]
+        </a>&nbsp;&nbsp;
+      </span>
+      </span>
+          </td>
+        </tr>
+      </table>
+      <!--      所有数据进行分页-->
+      <span>
+<!--        <s:if test="hId == null && keyWords == null">-->
+        <!--          <table border="0" cellspacing="0" cellpadding="0" width="900px" style="margin-left: -100px">-->
+        <!--            <tr>-->
+        <!--              <td align="right">-->
+        <!--                <span>第<s:property value="pageBean.currPage"/>/<s:property value="pageBean.totalPage"/>页</span>&nbsp;&nbsp;-->
+        <!--                <span>总记录数：<s:property value="pageBean.totalCount"/>&nbsp;&nbsp;每页显示:<s:property-->
+        <!--                        value="pageBean.pageSize"/></span>&nbsp;&nbsp;-->
+        <!--                <span>-->
+        <!--      <s:if test="pageBean.currPage != 1">-->
+        <!--        <a id="end_one" href="${pageContext.request.contextPath}/news_findNews.action?currPage=1">[首页]</a>&nbsp;&nbsp;-->
+        <!--        <a id="end_three"-->
+        <!--           href="${pageContext.request.contextPath}/news_findNews.action?currPage=<s:property value="-->
+        <!--           pageBean.currPage-1"/>">[上一页]</a>&nbsp;&nbsp;-->
+        <!--      </s:if>-->
+        <!--      <s:if test="pageBean.currPage != pageBean.totalPage">-->
+        <!--        <a id="end_two"-->
+        <!--           href="${pageContext.request.contextPath}/news_findNews.action?currPage=<s:property value="-->
+        <!--           pageBean.currPage+1"/>">[下一页]</a>&nbsp;&nbsp;-->
+        <!--        <a id="end_four"-->
+        <!--           href="${pageContext.request.contextPath}/news_findNews.action?currPage=<s:property value=" pageBean.totalPage"/>">[尾页]</a>&nbsp;&nbsp;-->
+        <!--      </s:if>-->
+        <!--      </span>-->
+        <!--              </td>-->
+        <!--            </tr>-->
+        <!--          </table>-->
+        <!--        </s:if>-->
+      </span>
+    </div><!--left_top end-->
+  </div><!--content_left end-->
+
+  <div class="content_right">
+    <div class="qyfc">
+      <h1>最新新闻</h1>
+      <div class="list" style="height: 250px">
+        <ul>
+          <li th:each="article:${recentList}">
+            <img th:src="@{/images/dian.png}" width="5" height="5" alt=""/>
+            <a style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 200px;"
+               th:href="@{/article/{articleId}/detail(articleId=${article.articleId})}">
+              <span th:text="${article.title}"></span>
+            </a>
+          </li>
+        </ul>
+      </div><!--list end-->
+    </div><!--qyfc end-->
+    <div class="qyfc">
+      <h1>最热新闻</h1>
+      <div class="list" style="height: 304px">
+        <ul>
+          <li th:each="article:${hotList}">
+            <img th:src="@{/images/dian.png}" width="5" height="5" alt=""/>
+            <a style="overflow: hidden; white-space: nowrap; text-overflow: ellipsis; width: 200px;"
+               th:href="@{/article/{articleId}/detail(articleId=${article.articleId})}">
+              <span th:text="${article.title}"></span>
+            </a>
+          </li>
+        </ul>
+      </div><!--list end-->
+    </div><!--qyfc end-->
+  </div><!--content_right end-->
+
+  <div class="clear"></div><!--清除浮动-->
+  <div class="link">
+    <h1></h1>
+    <ul>
+      <li><a href="" title="">新华网食品频道</a></li>
+      <li><a href="" title="">东南网食品频道</a></li>
+      <li><a href="" title="">人民网食品频道</a></li>
+      <li><a href="" title="">中国食品网</a></li>
+      <li><a href="" title="">中经网食品频道</a></li>
+      <li><a href="" title="">中国网食品频道</a></li>
+      <li><a href="" title="">CCTV美食台</a></li>
+      <li><a href="" title="">中华网食品频道</a></li>
+      <li><a href="" title="">中国日报网食品频道</a></li>
+      <li><a href="" title="">中青网食品频道</a></li>
+    </ul>
+  </div><!--link end-->
+</div><!--content end-->
+
+</body>
+</html>

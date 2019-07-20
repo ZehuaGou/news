@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/admin/oneCategory.css}"/>
+  <title>文章列表</title>
+  <link>
+</head>
+<body>
+<nav class="container-fluid">
+
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div th:replace="admin/top :: top"></div>
+
+      <!--      菜单栏-->
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <ul class="nav nav-tabs">
+            <li>
+              <a th:href="@{/admin/oneCategory/list}">一级分类管理</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/article/1/list}">文章管理</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/user/1/list}">用户管理</a>
+            </li>
+            <li class="active">
+              <a th:href="@{/admin/article/{keyWords}/1/list(keyWords=${keyWords})}">搜索结果</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>文章名</th>
+              <th>作者</th>
+              <th>一级分类</th>
+              <th>点击量</th>
+              <th>发布时间</th>
+              <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="info" th:each="artcile:${pageInfo.list}">
+              <td>
+                <a th:text="${artcile.title}"
+                   th:href="@{/admin/article/{id}/detail(id=${artcile.articleId})}"></a>
+              </td>
+              <td th:text="${artcile.author}"></td>
+              <td th:text="${artcile.oneCategoryName}"></td>
+              <td th:text="${artcile.clickVolume}"></td>
+              <td th:text="${#dates.format(artcile.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+              <td>
+                <a th:href="@{/admin/article/delete/{id}(id=${artcile.articleId})}">
+                  <button class="btn btn-danger btn-default">删除</button>
+                </a>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!--      分页-->
+      <div class="row clearfix">
+        <div class="col-md-8 column col-md-offset-4">
+          <span class="label label-info" th:text="'第'+${pageInfo.pageNum}+'/'+${pageInfo.pages}+'页'"></span>
+          <span class="label label-info" th:text="'总记录数：'+${pageInfo.total}"></span>
+          <span class="label label-info" th:text="'当前显示：'+${pageInfo.size}"></span>
+        </div>
+
+        <div class="col-md-8 column col-md-offset-4">
+          <ul class="pagination pagination-lg" th:if="${pageInfo.hasPreviousPage}">
+            <li>
+              <a th:href="@{/admin/article/{keyWords}/{pageNum}/search(keyWords=${keyWords}, pageNum=${pageInfo.firstPage})}">首页</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/article/{keyWords}/{pageNum}/search(keyWords=${keyWords}, pageNum=${pageInfo.prePage})}">上一页</a>
+            </li>
+          </ul>
+          <ul class="pagination pagination-lg" th:if="${pageInfo.hasNextPage}">
+            <li>
+              <a th:href="@{/admin/article/{keyWords}/{pageNum}/search(keyWords=${keyWords}, pageNum=${pageInfo.nextPage})}">下一页</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/article/{keyWords}/{pageNum}/search(keyWords=${keyWords}, pageNum=${pageInfo.lastPage})}">尾页</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+
+</html>

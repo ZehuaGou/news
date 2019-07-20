@@ -1,0 +1,102 @@
+/* CSS Document */
+html {
+    height: 100%;
+}
+
+body {
+    background: url(../images/background.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+#box {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    background: #FFF;
+    top: 150px;
+    left: 1000px;
+
+}
+
+#box a {
+    position: relative;
+    font-size: 30px;
+    top: 30px;
+    left: 70px;
+
+}
+
+#put {
+    position: relative;
+    width: 300px;
+    height: 150px;
+
+    left: 0;
+    top: 40px;
+}
+
+#select {
+    position: relative;
+    top: 3px;
+    left: 18px;
+}
+
+#one {
+    position: relative;
+    width: 220px;
+    height: 30px;
+    background: #999;
+    left: 28px;
+    top: 15px;
+}
+
+#two {
+    position: relative;
+    width: 220px;
+    height: 30px;
+    background: #999;
+    left: 28px;
+    top: 23px;
+}
+
+.pic {
+    height: 30px;
+    width: 30px;
+    opacity: 0.5;
+    float: left;
+}
+
+#pic_1 {
+    background: url(../images/people.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+#pic_2 {
+    background: url(../images/mima.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+.wen {
+    height: 30px;
+    width: 190px;
+    background: #fff;
+    float: left;
+}
+
+.wen input {
+    height: 30px;
+    width: 190px;
+    opacity: 0.5;
+}
+
+#button {
+    position: relative;
+    top: 35px;
+    left: 36px;
+}
+
+#button input {
+    width: 100px;
+    height: 30px;
+    background: #06F;
+}

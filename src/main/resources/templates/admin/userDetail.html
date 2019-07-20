@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${dto.username}+'的详情页'"></title>
+
+  <!--  bootstrap时间控件-->
+  <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css"
+        rel="stylesheet">
+  <script src="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+
+      <div th:replace="admin/top :: top"></div>
+
+      <form th:action="@{/admin/user/{id}/update(id=${dto.userId})}" role="form" method="post">
+        <div class="form-group">
+          <label>用户名</label>
+          <input type="text" name="username" th:value="${dto.username}"
+                 th:placeholder="用户名" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>密码</label>
+          <input type="text" name="password" th:value="${dto.password}"
+                 th:placeholder="密码" class="form-control"/>
+        </div>
+
+        <div class="form-group">
+          <label>性别</label>
+          <select class="form-control" name="sex">
+            <option th:value="F" th:selected="${dto.sexEnum.code == 'F'}">女</option>
+            <option th:value="M" th:selected="${dto.sexEnum.code == 'M'}">男</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>生日：</label>
+          <span th:text="${#dates.format(dto.birthday, 'yyyy-MM-dd')}" class="span"></span>
+        </div>
+        <div class="form-group">
+          <label>最后一次登录：</label>
+          <span th:text="${#dates.format(dto.currentLoginTime, 'yyyy-MM-dd HH:mm:ss')}" class="span"></span>
+        </div>
+        <div class="form-group">
+          <label>注册时间：</label>
+          <span th:text="${#dates.format(dto.registrationTime, 'yyyy-MM-dd HH:mm:ss')}" class="span"></span>
+        </div>
+        <div class="form-group">
+          <label>上次修改：</label>
+          <span th:text="${#dates.format(dto.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </div>
+        <button type="submit" class="btn btn-default">修改</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

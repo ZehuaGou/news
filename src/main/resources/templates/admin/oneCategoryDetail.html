@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <title th:text="${dto.name}"></title>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+
+      <div th:replace="admin/top :: top"></div>
+
+      <form th:action="@{/admin/oneCategory/{id}/update(id=${dto.oneCategoryId})}" role="form" method="post">
+        <div class="form-group">
+          <label>标题</label>
+          <input type="text" name="name" th:value="${dto.name}"
+                 th:placeholder="标题" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>介绍</label>
+          <input type="text" name="introduction" th:value="${dto.introduction}"
+                 th:placeholder="介绍" class="form-control"/>
+        </div>
+        <div class="form-group">
+          <label>创建时间：</label>
+          <span th:text="${#dates.format(dto.createTime, 'yyyy-MM-dd HH:mm:ss')}" class="span"></span>
+        </div>
+        <div class="form-group">
+          <label>上次修改：</label>
+          <span th:text="${#dates.format(dto.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </div>
+        <button type="submit" class="btn btn-default">修改</button>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

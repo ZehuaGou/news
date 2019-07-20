@@ -1,0 +1,34 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+
+<head>
+  <title>注册界面</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+  <link th:href="@{/css/register.css}" rel="stylesheet">
+
+</head>
+
+<body>
+<div id="box">
+  <div id="title"><a><font color="#0066FF">用 户 注 册</font></a></div>
+  <div id="body">
+    <span id="prompt" style="margin-left: 150px;"></span>
+    <form th:action="@{/user/save}" id="register" method="post">
+      <p>请输入用户名称：<input id="username" name="username" placeholder="用户名"/></p>
+      <p>请输入用户密码：<input type="password" name="password" placeholder="密码"/></p>
+      <p>请选择你的性别：
+        <input type="radio" name="sex" value="M" checked="checked" title=""/>男
+        <input type="radio" name="sex" value="F" title=""/>女
+      </p>
+
+      <p>出生日期：<input type="date" id="date" name="bir" placeholder="出生日期"/></p>
+      <a th:href="@{/user/jump2login}">
+        <input type="button" class="one" value="登录">
+      </a>
+      <button class="two" type="submit">注册</button>
+    </form>
+  </div>
+
+</div>
+</body>
+</html>

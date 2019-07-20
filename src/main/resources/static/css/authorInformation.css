@@ -1,0 +1,48 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url(../images/bg1.jpg) no-repeat;
+    background-size: 100% 100%;
+}
+
+#table1 {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    text-align: center;
+    width: 600px;
+}
+
+a {
+    text-decoration: none;
+    font-family: "microsoft yahei", serif;
+}
+
+#title a:hover {
+    color: #fff;
+}
+
+#title a:link, a:visited {
+    color: #90C;
+}
+
+#title {
+    width: 1200px;
+    font: 20px "microsoft yahei";
+    margin: 35px auto 0;
+}
+
+#foot {
+    width: 1000px;
+    height: 20px;
+    margin: 0 auto;
+    font-size: 12px;
+    position: relative;
+    top: 400px;
+}
+
+#foot a {
+    padding: 0 10px 0 150px;
+    color: #000;
+}

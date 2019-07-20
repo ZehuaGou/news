@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script type="text/javascript" th:src="@{/wangEditor/wangEditor.min.js}"></script>
+  <script type="text/javascript" th:src="@{/js/admin/publishArticle.js}"></script>
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div role="form">
+        <div class="form-group text-center">
+          <label>标题</label>
+          <input type="text" id="title" th:placeholder="文章标题" class="form-control"/>
+        </div>
+        <div class="form-group text-center">
+          <label>文章分类</label>
+          <select class="form-control" id="oneCategoryId">
+            <option th:each="oneCategory:${oneCategoryDTOList}"
+                    th:value="${oneCategory.oneCategoryId}"
+                    th:text="${oneCategory.name}"></option>
+          </select>
+        </div>
+        <div id="editor" class="form-group">
+          <p>随便写点什么...</p>
+        </div>
+
+        <div class="col-md-offset-5 form-group">
+          <button id="save" class="btn btn-info">保存</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    publish.createEditor();
+    $("#save").click(function () {
+        publish.save();
+    });
+</script>
+</html>

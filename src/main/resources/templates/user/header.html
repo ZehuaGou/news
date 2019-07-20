@@ -1,0 +1,37 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="header">
+  <div th:replace="user/top :: top"></div>
+  <!--header begin-->
+  <div class="header">
+    <div class="wrap">
+      <div class="search_box">
+        <div class="search">
+          <div class="lain1_box" id="lain1">
+            <input type="text" id="keyWords" name="keyWords" placeholder="请输入新闻关键字" class="sertxt"/>
+            <input id="submit-button" type="button" value="搜 索" name="" class="serbtn"/>
+          </div>
+        </div>
+        <div class="cb"></div>
+      </div>
+    </div>
+    <div class="nav">
+      <div class="wrap">
+        <ul class="nav_left">
+          <li><a th:href="@{/article/index}" title="" target="_parent">首 页</a></li>
+          <li th:each="dto:${session.dtoList}">
+            <a th:href="@{/article/{oneCategory}/1/list(oneCategory=${dto.oneCategoryId})}" target="_parent">
+              <span th:text="${dto.name}"></span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!--header end-->
+
+  <script type="text/javascript">
+      $("#submit-button").click(function () {
+          var keyWords = $("#keyWords").val();
+          window.location.href = getContextPath() + "/article/search/" + keyWords + "/1";
+      });
+  </script>
+</div>

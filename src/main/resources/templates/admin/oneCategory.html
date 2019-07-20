@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" th:href="@{/css/admin/oneCategory.css}"/>
+  <title>一级分类列表</title>
+  <link>
+</head>
+<body>
+<nav class="container-fluid">
+
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div th:replace="admin/top :: top"></div>
+
+      <!--      菜单栏-->
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <ul class="nav nav-tabs">
+            <li class="active">
+              <a th:href="@{/admin/oneCategory/list}">一级分类管理</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/article/1/list}">文章管理</a>
+            </li>
+            <li>
+              <a th:href="@{/admin/user/1/list}">用户管理</a>
+            </li>
+            <li class="disabled">
+              <a>搜索结果</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row clearfix">
+        <div class="col-md-12 column">
+          <table class="table table-hover">
+            <thead>
+            <tr>
+              <th>标题</th>
+              <th>创建时间</th>
+              <th>更新时间</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="info" th:each="oneCategory:${dtoList}">
+              <td>
+                <a th:text="${oneCategory.name}"
+                   th:href="@{/admin/oneCategory/{id}/detail(id=${oneCategory.oneCategoryId})}"></a>
+              </td>
+              <td th:text="${#dates.format(oneCategory.createTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+              <td th:text="${#dates.format(oneCategory.updateTime, 'yyyy-MM-dd HH:mm:ss')}"></td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
+</body>
+
+</html>

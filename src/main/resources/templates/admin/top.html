@@ -1,0 +1,47 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="top">
+  <div th:replace="common/tag :: tag"></div>
+  <script type="text/javascript" th:src="@{/js/admin/top.js}"></script>
+  <div class="row clearfix">
+    <div class="col-md-5 column">
+      <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="navbar-header">
+          <a class="navbar-brand" th:href="@{/admin/index}">首页</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <div class="navbar-form navbar-left" role="search">
+            <div class="form-group">
+              <input type="text" class="form-control" id="keyWords" th:placeholder="搜索文章"/>
+            </div>
+            <button id="submit-btn" class="btn btn-default">搜索</button>
+          </div>
+
+          <ul class="nav navbar-nav navbar-left">
+            <li>
+              <a th:href="@{/admin/article/jump2publish}">
+                发表文章
+              </a>
+            </li>
+
+            <li>
+              <a th:text="'管理员：'+${session.existAdmin.name}"></a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </div>
+  </div>
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <h3 class="text-center text-success">
+        系统管理界面
+      </h3>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+      $("#submit-btn").click(function () {
+          topSearch.search();
+      });
+  </script>
+
+</div>

@@ -1,0 +1,11 @@
+.table thead tr th{
+    vertical-align: middle;
+    text-align: center;
+    font-size: 20px;
+}
+
+.table tbody tr td{
+    vertical-align: middle;
+    text-align: center;
+    font-size: 15px;
+}

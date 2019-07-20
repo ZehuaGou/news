@@ -1,0 +1,70 @@
+html {
+    height: 100%;
+}
+
+body {
+    background: url(../images/3.jpg) no-repeat;
+    background-size: 100% 100%;
+    position: relative;
+    width: 100%;
+    height: 80%;
+}
+
+#box {
+    position: absolute;
+    left: 900px;
+    top: 120px;
+    width: 400px;
+    height: 400px;
+    background: #fff;
+
+}
+
+#title {
+    position: relative;
+    width: 100%;
+    height: 20%;
+
+}
+
+#title a {
+    position: relative;
+    left: 80px;
+    font-family: 华文行楷,serif;
+    font-size: 50px;
+    top: 20px;
+}
+
+#body form {
+    position: relative;
+    top: 0;
+    left: 40px;
+    font-size: 20px;
+}
+
+#body form p.one {
+    position: relative;
+    left: 20px;
+
+}
+
+
+#body a input.one {
+    position: absolute;
+    width: 130px;
+    height: 30px;
+    left: 0;
+    background: #06F;
+}
+
+#body button.two {
+    position: absolute;
+    width: 130px;
+    height: 30px;
+    left: 180px;
+    background: #06F;
+}
+
+#date {
+    opacity: 0.5;
+}

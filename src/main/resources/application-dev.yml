@@ -1,0 +1,38 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/news?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai
+  jpa:
+    show-sql: true
+  jackson:
+    default-property-inclusion: non_null #空值不返回至前端
+  redis:
+    host: localhost
+    port: 6379
+  #    password:
+  freemarker:
+    request-context-attribute: request
+
+  #thymeleaf
+  thymeleaf:
+    cache: false
+
+server:
+  servlet:
+    context-path: /news
+
+#日志配置
+#logging:
+#  pattern:
+#    console: "%d - %msg%n"
+#  file: C:/Users/41729/Desktop/Code/Web/sell/sell.log
+#  level: debug
+
+logging:
+  level:
+    com.news.web.mapper: trace #mybatis sql信息打印
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml

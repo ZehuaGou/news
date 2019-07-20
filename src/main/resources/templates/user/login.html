@@ -1,0 +1,69 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<div th:replace="common/tag :: tag"></div>
+
+<head>
+  <title>登录页面</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+  <link th:href="@{/css/login-style.css}" rel="stylesheet">
+</head>
+
+<body>
+<div id="box">
+  <a><font color="#0066FF">登 录 页 面</font></a>
+  <div id="put">
+    <div style="margin-left: 50px; color: red; font-size: 1px">
+      <strong id="message"></strong>
+    </div>
+
+    <div id="form-login">
+      <!--用户身份-->
+      <div id="select">
+
+        用户类型：
+        <select name="type" id="who" title="">
+          <option value="user">普通用户
+          <option value="admin">管理员
+        </select>
+      </div>
+
+      <!--用户账号-->
+      <div id="one">
+        <div class="pic" id="pic_1"></div>
+        <div class="wen">
+          <input id="username" name="username" type="text" placeholder="请输入账号" title=""/>
+        </div>
+      </div>
+      <!--用户密码-->
+      <div id="two">
+        <div class="pic" id="pic_2"></div>
+        <div class="wen">
+          <input id="password" name="password" type="password" placeholder="请输入密码" title=""/>
+        </div>
+      </div>
+      <div id="button">
+        <input type="button" id="login-button" class="login" th:value="登录"/>
+        <input type="button" id="register-button" class="login" th:value="注册" />
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/login.js}"></script>
+<script type="text/javascript">
+    $("#login-button").click(function () {
+        var who = $("#who").val();
+        var username = $("#username").val();
+        var password = $("#password").val();
+
+        if (who === "admin") {
+            login.adminAjax(username, password);
+        } else {
+            login.userAjax(username, password);
+        }
+    });
+
+    $("#register-button").click(function () {
+        window.location.href = getContextPath() + "user/jump2register";
+    });
+</script>
+</html>

@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <link rel="stylesheet" th:href="@{/css/news-style.css}"/>
+  <title th:text="${dto.title}"></title>
+</head>
+<body>
+<div th:replace="user/top :: top"></div>
+<div id="box">
+  <div id="left">
+    <div id="tit" th:text="${dto.title}"></div>
+    <div id="auth">
+      <small>作者：</small>
+      <strong th:text="${dto.author}" style="color: #99CCFF"></strong>
+    </div>
+    <div id="art">
+      <br>
+      <span th:utext="${dto.content}"></span>
+    </div>
+    <div id="com">评论
+      <br><br>
+      <div th:replace="user/articleReplies :: articleReplies"></div>
+    </div>
+    <div style="margin-bottom: 50px;">
+      <strong>在此回复：</strong>
+      <form th:action="@{/reply/save}" method="post">
+        <table align="center">
+          <tr>
+            <td><input type="hidden" name="articleId" th:value="${dto.articleId}"></td>
+          </tr>
+          <tr>
+            <td><textarea name="content" cols="50" rows="5" placeholder="输入回复内容"></textarea></td>
+          </tr>
+          <tr align="center">
+            <td><input type="submit" value="发表评论"></td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
+
+  <div id="right">
+    <div id="right_tit">相关文章</div>
+    <div class="right_box">
+      <div th:each="article:${relevant}" class="art">
+        <a th:href="@{/article/{articleId}/detail(articleId=${article.articleId})}">
+          <span th:text="${article.title}"></span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>

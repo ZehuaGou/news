@@ -1,0 +1,29 @@
+* {
+    margin: 0;
+}
+
+body {
+    background: url("../images/wood.jpg") no-repeat;
+    background-size: 100% 100%;
+    color: #ba6d3a;
+}
+
+.child_row_01 td, .child_row_02 td {
+    text-align: center;
+}
+
+.parent td {
+    padding-left: 50px;
+}
+
+tr {
+    background-color: #999;
+}
+
+table {
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}

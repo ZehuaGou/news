@@ -1,0 +1,27 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="articleReplies">
+
+  <table th:each="reply:${dto.replyDTOList}">
+    <tr>
+      <td>
+        回复内容：<span th:text="${reply.content}"></span>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small>
+          回复人：
+          <span th:text="${reply.author}"></span>
+        </small>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <small>
+          回复时间：<span th:text="${#dates.format(reply.createTime, 'yyyy-MM-dd HH:mm:ss')}"></span>
+        </small>
+      </td>
+    </tr>
+    <br/>
+  </table>
+  <br/>
+</div>

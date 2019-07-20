@@ -1,0 +1,33 @@
+<div xmlns:th="http://www.thymeleaf.org" th:fragment="top">
+  <div th:replace="common/tag :: tag"></div>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/global.css}"/>
+  <link rel="stylesheet" type="text/css" th:href="@{/css/header.css}"/>
+  <script type="text/javascript" th:src="@{/js/settab.js}"></script>
+
+  <!--top begin-->
+  <div class="top">
+    <div class="wrap">
+      <span class="fl">欢迎您来到<a th:href="@{/article/index}">新闻网</a>！</span>
+      &nbsp;&nbsp;
+
+      <span th:switch="${session.existUser != null}">
+        <span th:case="true">
+       欢迎：
+       <strong th:text="${session.existUser.username}"></strong>
+          <span class="fr"><a th:href="@{/user/quit}">退出</a></span>
+      </span>
+
+      <span th:case="false" class="fr">
+        <a th:href="@{/user/jump2login}" title="" target="_parent">
+          请登录
+        </a>
+        <a th:href="@{/user/jump2register}" title="" target="_parent">
+          立即注册
+        </a>
+      </span>
+    </span>
+
+    </div>
+  </div>
+  <!--top end-->
+</div>
